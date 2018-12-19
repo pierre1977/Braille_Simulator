@@ -1,0 +1,133 @@
+﻿<Page x:Class="BrailleApp.Views.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:Behaviors="using:Template10.Behaviors"
+      xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:controls="using:Template10.Controls"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:BrailleApp.Views"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:vm="using:BrailleApp.ViewModels" mc:Ignorable="d">
+
+    <Page.DataContext>
+        <vm:MainPageViewModel x:Name="ViewModel" />
+    </Page.DataContext>
+
+    <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <controls:PageHeader x:Name="pageHeader" RelativePanel.AlignLeftWithPanel="True"
+                             RelativePanel.AlignRightWithPanel="True"
+                             RelativePanel.AlignTopWithPanel="True" Text="{Binding Version}">
+            <!--  Primariy commands  -->
+            <controls:PageHeader.PrimaryCommands>
+                <AppBarButton Icon="Setting" Label="Einstellung" Click="{x:Bind ViewModel.GotoSettings}"/>
+                <AppBarButton Icon="Help" Label="Impressum" Click="{x:Bind ViewModel.GotoAbout}" />
+              <!--  <AppBarButton x:Name="PowerDown" FontFamily="Segoe MDL2 Assets" Content="&#xE7E8;"  Background="Transparent" FontSize="20%" ToolTipService.ToolTip="Back" /> -->
+
+                <AppBarButton x:Name="PowerBtn"  Label="Power" >
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE7E8;" />
+                    </AppBarButton.Icon>
+                    <AppBarButton.Flyout >
+                        <MenuFlyout x:Name="menuPowerBtn"  >
+                            <MenuFlyoutItem FontFamily="Segoe MDL2 Assets" Text="&#xE7E8; Herunterfahren" PointerReleased="PointerReleased_PowerDown" />
+                            <MenuFlyoutItem FontFamily="Segoe MDL2 Assets" Text="&#xE7E8; Neu starten" PointerReleased="PointerReleased_PowerRestart" />
+                        </MenuFlyout  >
+                    </AppBarButton.Flyout >
+                </AppBarButton >
+            </controls:PageHeader.PrimaryCommands>
+            
+         <!--   <CommandBar.SecondaryCommands>
+                <AppBarButton Label="Herunterfahren" FontFamily="Segoe MDL2 Assets" Content="&#xE7E8;" />
+                <AppBarButton Label="Neu starten" FontFamily="Segoe MDL2 Assets" Content="&#xE7E8;" />
+            </CommandBar.SecondaryCommands>
+        -->
+            
+            <!--  secondary commands  -->
+            <!--<controls:PageHeader.SecondaryCommands>
+                <AppBarButton Click="{x:Bind ViewModel.GotoSettings}" Label="Settings" />
+                <AppBarButton Click="{x:Bind ViewModel.GotoPrivacy}" Label="Privacy" />
+                <AppBarButton Click="{x:Bind ViewModel.GotoAbout}" Label="About" />
+            </controls:PageHeader.SecondaryCommands>-->
+
+        </controls:PageHeader>
+
+        <StackPanel x:Name="mainStack" Orientation="Horizontal" RelativePanel.AlignLeftWithPanel="True" RelativePanel.Below="pageHeader" Margin="20" Padding="40">
+            <ScrollViewer x:Name="LeftScrollViewer" HorizontalContentAlignment="Left" VerticalScrollBarVisibility="Auto" RelativePanel.AlignLeftWithPanel="True" >
+                    <StackPanel>
+                        <RelativePanel x:Name="panel_ip" HorizontalAlignment="Left">
+
+                            <TextBlock x:Name="txt_Ip" TextWrapping="Wrap" Text="IP Adresse und Port zum MVBD Treiber" 
+                               Margin="0,0,0,0" HorizontalAlignment="Left" />
+
+                            <TextBox x:Name="tb_Ip" Width="200"
+                                     Margin="0,12,0,0" HorizontalAlignment="Left"                                 
+                                     RelativePanel.AlignLeftWithPanel="True" 
+                                     RelativePanel.Below="txt_Ip"
+                                     Text="{Binding settings_metec_ip, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                            <TextBox x:Name="tb_Port" Width="40"
+                                    Margin="12,12,0,0" HorizontalAlignment="Left"
+                                    Text="{Binding settings_metec_port, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                                        
+                                    RelativePanel.AlignBottomWith="tb_Ip"
+                                    RelativePanel.RightOf="tb_Ip" />
+
+                            <Button x:Name="btn_connect" Margin="12,0,0,0" Content="Verbinden" RelativePanel.AlignBottomWith="tb_Port" RelativePanel.RightOf="tb_Port" 
+                                Click="btn_connect_Click" />
+
+                        </RelativePanel >
+
+                        <RelativePanel x:Name="panel_connected"  HorizontalAlignment="Left" Margin="0,20,0,0" Visibility="Visible">
+                            <TextBlock x:Name="txt_device" TextWrapping="Wrap" Text="MVBD Gerät" Margin="0,0,0,0" HorizontalAlignment="Left" />
+                            <ComboBox x:Name="cb_device" Width="275" Margin="0,12,0,0" RelativePanel.Below="txt_device" SelectionChanged="cb_device_SelectionChanged" >
+                            </ComboBox>
+                        </RelativePanel>
+
+                        <RelativePanel x:Name="panel_start_app"  HorizontalAlignment="Left" Margin="0,20,0,0" Visibility="Visible">
+                            <TextBlock x:Name="txt_run_app" TextWrapping="Wrap" Text="Applikationen" Margin="0,0,0,0" HorizontalAlignment="Left"/>
+                            <Button x:Name="btn_run_simulator" Content="Run Simulator" HorizontalAlignment="Stretch" RelativePanel.Below="txt_run_app" Margin="0,12,0,0"  VerticalAlignment="Stretch" Click="btn_run_simulator_Click" IsEnabled="False"/>
+                            <!--<Button x:Name="btn_run_notepad" Content="Run Notepad" HorizontalAlignment="Stretch" RelativePanel.Below="txt_run_app" RelativePanel.RightOf="btn_run_simulator" Margin="12,12,0,0"  VerticalAlignment="Stretch" Click="btn_run_simulator_Click" IsEnabled="False"/>-->
+                        </RelativePanel>
+
+                        <RelativePanel x:Name="panel_error"  HorizontalAlignment="Left" Margin="0,20,0,0" Visibility="Visible">
+                            <!--<Rectangle Fill="Blue" Height="44" Width="100"/>-->
+                        </RelativePanel>
+
+                    </StackPanel>
+            </ScrollViewer>
+        </StackPanel>
+
+        <ScrollViewer Margin="0,12,-12,0" HorizontalContentAlignment="Left" VerticalScrollBarVisibility="Auto"
+                      RelativePanel.RightOf="mainStack"
+                      RelativePanel.Below="pageHeader">
+            <RelativePanel >
+                <TextBlock Margin="0,24,24,12" LineHeight="24"
+                               x:Name="LizenzTextBlock"
+                               TextWrapping="Wrap"
+                               RelativePanel.AlignLeftWithPanel="True"                                 
+                               >
+                        <Bold>Anleitung</Bold><LineBreak />
+                        <LineBreak />
+                        <Bold>1</Bold> MVBD Software starten (Download: http://download.metec-ag.de/MVBD/)<LineBreak />
+                        <LineBreak />
+                        <Bold>2</Bold> TCP/IP Tab wählen, Verbindungsart wählen (Lokal = wenn auf dem gleichen System ausgeführt d.h. IP 127.0.0.1; Jede = wenn anderes System im gleichen Netzwerk d.h. die IP Adresse des Rechners wo die MVBD Software ausgeführt wird) und auf Start Klicken.<LineBreak />
+                        <LineBreak />    
+                        <Bold>3</Bold> Die IP Adresse der MVBD Software in dem Feld "IP Adresse" dieser Anwendung eingeben und gegebenenfalls den "Port" anpassen.<LineBreak />
+                        <LineBreak />        
+                        <Bold>4</Bold> Auf den Button "Verbinden" klicken. Ist die Verbindung erfolgreich, ändert sich der Name des Buttons in "Trennen". Auch die Liste der MVDB Geräte enthält simulierbare Geräte.<LineBreak />
+                        <LineBreak /> 
+                        <Bold>5</Bold> Das zu simulierende MVDB Gerät aus der Liste wählen und auf den Button "Run Simulator" klicken. Der Simulator wird initialisiert und startet.<LineBreak />
+                        <LineBreak /> 
+                    
+                        <LineBreak />
+                        Hinweis: Bei Problemen sollte die Firewall überprüft oder der Port gewechselt werden.
+                        <LineBreak />
+                    
+                        <LineBreak />
+                </TextBlock>
+            </RelativePanel>
+        </ScrollViewer>
+
+    </RelativePanel>
+</Page>

@@ -1,0 +1,2 @@
+MainPackage=C:\Master_Code\Master_BrailleApp\BrailleApp\bin\x86\Release\BrailleApp_1.0.3.0_x86.appx
+SymbolPackage=C:\Master_Code\Master_BrailleApp\BrailleApp\AppPackages\BrailleApp_1.0.3.0_Test\BrailleApp_1.0.3.0_x86.appxsym

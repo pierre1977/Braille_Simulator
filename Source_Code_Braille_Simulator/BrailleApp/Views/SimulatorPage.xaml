@@ -1,0 +1,67 @@
+﻿<Page x:Class="BrailleApp.Views.SimulatorPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:Behaviors="using:Template10.Behaviors"
+      xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:controls="using:Template10.Controls"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:BrailleApp.Views"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:vm="using:BrailleApp.ViewModels"
+      x:Name="ThisPage"
+      
+      SizeChanged="Window_SizeChanged"
+      xmlns:BrailleDisplay="using:BrailleDisplay"
+      xmlns:BrailleNavButton="using:BrailleNavButton"
+      xmlns:BrailleSingleButton="using:BrailleSingleButton"     
+      
+       mc:Ignorable="d">
+
+    <Page.DataContext>
+        <vm:MainPageViewModel x:Name="ViewModel" />
+    </Page.DataContext>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock x:Name="txt_Test" HorizontalAlignment="Left" Margin="2,1,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+
+        <!--Top to Down-->
+        <StackPanel x:Name="mainStackPanel" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Center" Height="auto" Margin="0" VerticalAlignment="Top" Width="auto">
+
+            <Grid x:Name="nav_grid" Width="auto" Height="auto" VerticalAlignment="Top" HorizontalAlignment="Center" >
+                <BrailleDisplay:Display x:Name="brailleArea" Background="#FF6A6A6A" VerticalAlignment="Top"/>
+            </Grid>
+
+
+            <Viewbox x:Name="mainBtnViewbox" VerticalAlignment="Top" >
+                <!--Main Button Stock-->
+                <StackPanel x:Name="mainBtnStackPanel" Margin="2" Padding="5" Orientation="Horizontal" Background="#FFD6D6D6" VerticalAlignment="Center">
+
+                    <StackPanel Margin="0">
+                        <!--https://blogs.msdn.microsoft.com/quick_thoughts/2015/06/01/windows-10-splitview-build-your-first-hamburger-menu/-->
+                        <Button x:Name="HamburgerButton" FontFamily="Segoe MDL2 Assets" Content="&#xE70D;" Width="40" Height="30" Background="Transparent" FontSize="20" Padding="0,0" PointerPressed="HamburgerButton_PointerPressed" />
+                        <Button x:Name="BackButton" FontFamily="Segoe MDL2 Assets" Content="&#xE10F;" Width="40" Height="30" Background="Transparent" FontSize="20" Padding="0,0" PointerPressed="BackButton_PointerPressed" Margin="0,10,0,0" ToolTipService.ToolTip="Back">
+                            
+                        </Button>
+                    </StackPanel>
+
+                    <!--Platz für alle weiteren Buttons-->
+                    <VariableSizedWrapGrid  x:Name="smalStackPanel" Margin="0" Orientation="Horizontal" MaximumRowsOrColumns="9">
+                    </VariableSizedWrapGrid>
+
+
+
+                    <BrailleNavButton:NavButton x:Name="brailleNavBtn" Margin="10,0,2,2" MaxHeight="150" MaxWidth="150" />
+
+
+
+                </StackPanel>
+            </Viewbox>
+
+        </StackPanel>
+
+
+
+
+    </Grid>
+</Page>

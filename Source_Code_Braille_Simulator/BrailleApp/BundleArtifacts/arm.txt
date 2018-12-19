@@ -1,0 +1,3 @@
+MainPackage=C:\Master_Code\Master_BrailleApp\BrailleApp\bin\ARM\Release\BrailleApp_1.0.3.0_ARM.appx
+SymbolPackage=C:\Master_Code\Master_BrailleApp\BrailleApp\AppPackages\BrailleApp_1.0.3.0_Test\BrailleApp_1.0.3.0_ARM.appxsym
+ResourcePack=C:\Master_Code\Master_BrailleApp\BrailleApp\bin\ARM\Release\BrailleApp_1.0.3.0_language-de.appx

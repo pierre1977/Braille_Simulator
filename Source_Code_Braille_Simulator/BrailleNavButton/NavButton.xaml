@@ -1,0 +1,67 @@
+﻿<UserControl 
+    x:Class="BrailleNavButton.NavButton"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BrailleNavButton"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <!--<Grid>-->
+
+    <Viewbox x:Name="NavScaler" HorizontalAlignment="Left" Height="100" Margin="0" VerticalAlignment="Top" Width="100">
+        <Canvas HorizontalAlignment="Left" Height="280" Margin="0,0,0,0" VerticalAlignment="Top" Width="280">
+
+            <Ellipse Fill="#FFE0E0E0" HorizontalAlignment="Left" Height="280" Margin="0,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="280"/>
+
+
+            <Grid Canvas.Left="80" Canvas.Top="80" PointerEntered="Grid_PointerEntered" PointerExited="Grid_PointerExited" PointerPressed="Grid_PointerPressed" PointerReleased="Grid_PointerReleased">
+                <Ellipse x:Name="btn_middle" Fill="#FF666666" HorizontalAlignment="Left" Height="120" Stroke="Black" VerticalAlignment="Top" Width="120" StrokeThickness="5"  Canvas.Left="80" Canvas.Top="80" />                
+                <TextBlock x:Name="btn_name_enter" Canvas.Left="80" TextWrapping="Wrap" Text="X" ToolTipService.ToolTip="ToolTip" Canvas.Top="10" RenderTransformOrigin="0.5,0.5" FontSize="24" Width="53" Height="62" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" TextReadingOrder="DetectFromContent" Foreground="Black" Margin="33,37,94,21"/>
+            </Grid>
+
+
+            <Grid Canvas.Left="50" Canvas.Top="4" PointerEntered="Grid_PointerEntered" PointerExited="Grid_PointerExited" PointerPressed="Grid_PointerPressed" PointerReleased="Grid_PointerReleased">
+                <Path x:Name="btn_top" Data="M150,6.5 C201.5,8 225.001,27.5002 240.001,38.4999 C243.15,40.8091 204.09,76.0685 200.662,78.6666 C198.241,80.5015 185.912,60.8344 150.834,60.8336 C114.247,60.8328 105.58,79.835 102.335,78.3342 C98.029,76.3426 57.4219,42.9212 61.4998,39.0003 C74.5005,26.5002 101,6.5 150,6.5 z" Fill="#FF666666" HorizontalAlignment="Left" Height="84" Stretch="Fill" Stroke="Black" UseLayoutRounding="False" VerticalAlignment="Top" Width="180.177" Canvas.Left="50" Canvas.Top="4.082" StrokeThickness="5" />
+                <TextBlock x:Name="btn_name_up" Canvas.Left="80" TextWrapping="Wrap" Text="U" ToolTipService.ToolTip="ToolTip" Canvas.Top="10" RenderTransformOrigin="0.5,0.5" FontSize="24" Width="53" Height="62" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" TextReadingOrder="DetectFromContent" Foreground="Black" Margin="64,13,63,9"/>
+            </Grid>
+
+            <Grid Canvas.Left="50" Canvas.Top="192" PointerEntered="Grid_PointerEntered" PointerExited="Grid_PointerExited" PointerPressed="Grid_PointerPressed" PointerReleased="Grid_PointerReleased">
+                <Path x:Name="btn_bottom" Data="M150,6.5 C201.5,8 225.001,27.5002 240.001,38.4999 C243.15,40.8091 204.09,76.0685 200.662,78.6666 C198.241,80.5015 185.912,60.8344 150.834,60.8336 C114.247,60.8328 105.58,79.835 102.335,78.3342 C98.029,76.3426 57.4219,42.9212 61.4998,39.0003 C74.5005,26.5002 101,6.5 150,6.5 z" Fill="#FF666666" HorizontalAlignment="Left" Height="84" Stretch="Fill" Stroke="Black" UseLayoutRounding="False" VerticalAlignment="Top" Width="180.177" RenderTransformOrigin="0.5,0.5" StrokeThickness="5" Canvas.Left="50" Canvas.Top="191.33" >
+                    <Path.RenderTransform>
+                        <CompositeTransform Rotation="180.0"/>
+                    </Path.RenderTransform>
+                </Path>                
+                <TextBlock x:Name="btn_name_down" Canvas.Left="80" TextWrapping="Wrap" Text="D" ToolTipService.ToolTip="ToolTip" Canvas.Top="119" RenderTransformOrigin="0.5,0.5" FontSize="24" Width="53" Height="62" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" TextReadingOrder="DetectFromContent" Foreground="Black" Margin="64,32,63,-10"/>
+            </Grid>
+
+            <Grid Canvas.Left="144" Canvas.Top="98" PointerEntered="Grid_PointerEntered" PointerExited="Grid_PointerExited" PointerPressed="Grid_PointerPressed" PointerReleased="Grid_PointerReleased">
+                <Path x:Name="btn_right" Data="M150,6.5 C201.5,8 225.001,27.5002 240.001,38.4999 C243.15,40.8091 204.09,76.0685 200.662,78.6666 C198.241,80.5015 185.912,60.8344 150.834,60.8336 C114.247,60.8328 105.58,79.835 102.335,78.3342 C98.029,76.3426 57.4219,42.9212 61.4998,39.0003 C74.5005,26.5002 101,6.5 150,6.5 z" Fill="#FF666666" HorizontalAlignment="Left" Height="84" Stretch="Fill" Stroke="Black" UseLayoutRounding="False" VerticalAlignment="Top" Width="180.177" RenderTransformOrigin="0.5,0.5" StrokeThickness="5" Canvas.Left="143.664" Canvas.Top="97.781" >
+                    <Path.RenderTransform>
+                        <CompositeTransform Rotation="90.0"/>
+                    </Path.RenderTransform>
+                </Path>
+                <TextBlock x:Name="btn_name_right" Canvas.Left="10" TextWrapping="Wrap" Text="R" ToolTipService.ToolTip="ToolTip" Canvas.Top="119" RenderTransformOrigin="0.5,0.5" FontSize="24" Width="53" Height="62" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" TextReadingOrder="DetectFromContent" Foreground="Black" Margin="72,17,55,5"/>
+            </Grid>
+
+            <Grid Canvas.Left="-44" Canvas.Top="98" PointerEntered="Grid_PointerEntered" PointerExited="Grid_PointerExited" PointerPressed="Grid_PointerPressed" PointerReleased="Grid_PointerReleased" >
+                <Path x:Name="btn_left" Data="M150,6.5 C201.5,8 225.001,27.5002 240.001,38.4999 C243.15,40.8091 204.09,76.0685 200.662,78.6666 C198.241,80.5015 185.912,60.8344 150.834,60.8336 C114.247,60.8328 105.58,79.835 102.335,78.3342 C98.029,76.3426 57.4219,42.9212 61.4998,39.0003 C74.5005,26.5002 101,6.5 150,6.5 z" Fill="#FF666666" HorizontalAlignment="Left" Height="84" Stretch="Fill" Stroke="Black" UseLayoutRounding="False" VerticalAlignment="Top" Width="180.177" RenderTransformOrigin="0.5,0.5" StrokeThickness="5" Canvas.Left="-43.914" Canvas.Top="98.031" >
+                    <Path.RenderTransform>
+                        <CompositeTransform Rotation="270.0"/>
+                    </Path.RenderTransform>
+                </Path>
+                <TextBlock x:Name="btn_name_left" Canvas.Left="10" TextWrapping="Wrap" Text="L" ToolTipService.ToolTip="ToolTip" Canvas.Top="119" RenderTransformOrigin="0.5,0.5" FontSize="24" Width="53" Height="62" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" TextReadingOrder="DetectFromContent" Foreground="Black" Margin="54,17,73,5"/>
+            </Grid>
+
+
+
+
+        </Canvas>
+    </Viewbox>
+
+
+
+    <!--</Grid>-->
+</UserControl>
